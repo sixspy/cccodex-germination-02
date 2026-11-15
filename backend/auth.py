@@ -15,6 +15,8 @@ def _digest(password: str) -> str:
 
 USERS = {
     "admin": {"role": "writer", "digest": _digest("123456"), "title": "核算员"},
+    "day": {"role": "writer", "digest": _digest("day123456"), "title": "白班检验员"},
+    "night": {"role": "writer", "digest": _digest("night123456"), "title": "夜班检验员"},
     "witness": {"role": "reader", "digest": _digest("wit123456"), "title": "见证员"},
 }
 
@@ -48,4 +50,4 @@ def read_user(authorization: str | None):
     user = USERS.get(username)
     if not user:
         return None
-    return {"username": username, "role": payload.get("role"), "title": user["title"]}
+    return {"username": username, "role": user["role"], "title": user["title"]}
